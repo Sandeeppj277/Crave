@@ -923,7 +923,7 @@ export default function App() {
 
           <div className="flex items-center gap-4">
             <a
-              href="http://localhost:8080/swagger-ui.html"
+              href="https://crave-backend-js6w.onrender.com/swagger-ui/index.html"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 font-black text-emerald-900 bg-emerald-100 hover:bg-emerald-200/80 px-4 py-2 rounded-full border border-emerald-300 transition-all shadow-xs group"
