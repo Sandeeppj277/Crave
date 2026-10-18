@@ -18,15 +18,13 @@ services:
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
         value: "update"
 
-  # 2. React (Vite) Frontend Static Site
+  # 2. React (Vite) Frontend Static Site (Global CDN)
   - type: web
     name: crave-frontend
     runtime: static
     rootDir: crave-frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
-    plan: free
-    region: oregon
     routes:
       - type: rewrite
         source: /*
