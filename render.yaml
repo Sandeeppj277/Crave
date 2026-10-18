@@ -10,11 +10,13 @@ services:
     healthCheckPath: /api/restaurants
     envVars:
       - key: SPRING_DATASOURCE_URL
-        placeholder: "jdbc:mysql://<host>:<port>/crave_db?useSSL=true&serverTimezone=UTC"
+        value: "jdbc:mysql://mysql-1a18b3e8-sandeeppj277-221c.j.aivencloud.com:16925/defaultdb?useSSL=true&serverTimezone=UTC"
       - key: SPRING_DATASOURCE_USERNAME
-        placeholder: "database_user"
+        value: "avnadmin"
       - key: SPRING_DATASOURCE_PASSWORD
-        placeholder: "database_password"
+        sync: false
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: "update"
 
   # 2. React (Vite) Frontend Static Site
   - type: web
@@ -31,4 +33,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        placeholder: "https://crave-backend.onrender.com/api"
+        value: "https://crave-backend.onrender.com/api"
