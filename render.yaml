@@ -31,4 +31,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        value: "https://crave-backend.onrender.com/api"
+        value: "https://crave-backend-js6w.onrender.com/api"
