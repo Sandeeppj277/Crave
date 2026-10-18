@@ -1,13 +1,25 @@
 # Crave — Haute Cuisine Food Delivery & Operations Management Platform
 
-[![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.3.4-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![Java 21 LTS](https://img.shields.io/badge/Java-21%20LTS-orange.svg)](https://www.oracle.com/java/)
-[![React 18](https://img.shields.io/badge/React-18.3-blue.svg)](https://react.dev/)
-[![MySQL 8](https://img.shields.io/badge/MySQL-8.0-blue.svg)](https://www.mysql.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-38B2AC.svg)](https://tailwindcss.com/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://www.docker.com/)
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Render-success?style=for-the-badge&logo=render)](https://crave-frontend-4l1q.onrender.com)
+[![API Docs](https://img.shields.io/badge/API_Docs-Swagger_UI-blue?style=for-the-badge&logo=swagger)](https://crave-backend-js6w.onrender.com/swagger-ui/index.html)
+[![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.3.4-brightgreen.svg?style=for-the-badge)](https://spring.io/projects/spring-boot)
+[![Java 21 LTS](https://img.shields.io/badge/Java-21%20LTS-orange.svg?style=for-the-badge)](https://www.oracle.com/java/)
+[![React 18](https://img.shields.io/badge/React-18.3-blue.svg?style=for-the-badge)](https://react.dev/)
+[![MySQL 8](https://img.shields.io/badge/MySQL-Aiven_Cloud-00758F.svg?style=for-the-badge&logo=mysql)](https://aiven.io/)
 
-**Crave** is a full-stack, enterprise-grade food delivery application and culinary operations platform. Engineered with **Spring Boot 3 (Java 21 LTS, Maven)**, **MySQL 8**, and **React 18 (Vite, JavaScript)**, Crave features a **Claymorphic Editorial UI Design System** with strict role-based access control (RBAC), multi-stage order pipelines, and all transactions computed in **Indian Rupees (₹)**.
+---
+
+### 🌐 Live Production Deployments
+
+| Resource | Direct Link | Description |
+| :--- | :--- | :--- |
+| **Live Web Application** | 🚀 **[https://crave-frontend-4l1q.onrender.com](https://crave-frontend-4l1q.onrender.com)** | Full responsive food delivery app with 1-Click role logins |
+| **Cloud Backend API** | 📡 **[https://crave-backend-js6w.onrender.com](https://crave-backend-js6w.onrender.com)** | Spring Boot 3 REST API on Render |
+| **Interactive Swagger Docs** | 📑 **[https://crave-backend-js6w.onrender.com/swagger-ui/index.html](https://crave-backend-js6w.onrender.com/swagger-ui/index.html)** | Live OpenAPI 3 testing console |
+
+---
+
+**Crave** is a full-stack, enterprise-grade food delivery application and culinary operations platform. Engineered with **Spring Boot 3 (Java 21 LTS, Maven)**, **MySQL 8 (Aiven Cloud)**, and **React 18 (Vite, JavaScript)**, Crave features a **Claymorphic Editorial UI Design System** with strict role-based access control (RBAC), multi-stage order pipelines, and all transactions computed in **Indian Rupees (₹)**.
 
 ---
 
@@ -25,12 +37,12 @@
 - **Claymorphic Editorial Design System**:
   - Double exterior drop-shadows combined with inset rim lighting for inflated, tactile clay depth.
   - Responsive layout with high-definition brand emblem, interactive hover physics, and zero developer jargon in consumer views.
-- **Interactive OpenAPI 3 / Swagger Documentation**: Available at `http://localhost:8080/swagger-ui.html`.
+- **Interactive OpenAPI 3 / Swagger Documentation**: Available locally at `http://localhost:8080/swagger-ui.html` and live in cloud at `https://crave-backend-js6w.onrender.com/swagger-ui/index.html`.
 - **Production-Ready Containerization**: Dockerfiles for backend & frontend plus single-command `docker-compose.yml`.
 
 ---
 
-## 👤 Credentials & Role Hierarchy
+## 👤 1-Click Credentials & Role Hierarchy
 
 | Role | Email | Password | Primary Responsibility | Capabilities |
 | :--- | :--- | :--- | :--- | :--- |
@@ -89,57 +101,38 @@ docker compose down
 
 ---
 
-## ☁️ Cloud Deployment Guide
+## ☁️ Cloud Architecture & Deployment (Render + Aiven)
 
-### Option 1: Docker on AWS EC2 / DigitalOcean / Linode
-1. Launch an Ubuntu Linux VM (2GB RAM minimum, e.g., t3.small or $12 droplet).
-2. Install Docker & Docker Compose:
-   ```bash
-   sudo apt update && sudo apt install -y docker.io docker-compose
-   ```
-3. Clone your repository:
-   ```bash
-   git clone <YOUR_GIT_REPO_URL>
-   cd Crave
-   ```
-4. Run:
-   ```bash
-   sudo docker compose up --build -d
-   ```
-5. Open port 80 and 8080 in your cloud firewall/security group.
+The application is deployed across high-availability cloud infrastructure:
 
-### Option 2: Render.com / Railway.app
-- **Database**: Create a MySQL database instance. Copy the connection string.
-- **Backend Service**:
-  - Deploy `crave-backend` as a Web Service.
-  - Set Environment Variables:
-    - `SPRING_DATASOURCE_URL`: `jdbc:mysql://<host>:<port>/<db>?useSSL=true`
-    - `SPRING_DATASOURCE_USERNAME`: `<user>`
-    - `SPRING_DATASOURCE_PASSWORD`: `<password>`
-- **Frontend Service**:
-  - Deploy `crave-frontend` as a Static Site or Docker Service.
-  - Build Command: `npm install && npm run build`
-  - Publish Directory: `dist`
-  - Set `VITE_API_URL` to your backend URL.
+- **Database**: Cloud MySQL hosted on **Aiven** (`mysql-1a18b3e8-sandeeppj277-221c.j.aivencloud.com:16925`)
+- **Backend Web Service**: Containerized Spring Boot 3 running on **Render** (`https://crave-backend-js6w.onrender.com`)
+- **Frontend Static Site**: React 18 production build on **Render Global CDN** (`https://crave-frontend-4l1q.onrender.com`)
+- **Infrastructure Blueprint**: Managed seamlessly through the root [`render.yaml`](./render.yaml) file in this repository.
 
 ---
 
-## 📦 Pushing to Your GitHub Repository
+## 📦 Repository Structure
 
-```bash
-# 1. Initialize Git in the Crave folder (if not done)
-git init
-
-# 2. Stage all project files
-git add .
-
-# 3. Create initial commit
-git commit -m "Initial commit: Crave full-stack food delivery platform"
-
-# 4. Connect to your GitHub repository
-git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPOSITORY>.git
-
-# 5. Push to main branch
-git branch -M main
-git push -u origin main
+```text
+Crave/
+├── crave-backend/             # Spring Boot 3 REST API (Java 21 LTS, Maven, JPA)
+│   ├── src/main/java/com/crave/
+│   │   ├── config/            # DataInitializer (Pre-seeded menus & accounts)
+│   │   ├── controller/        # Auth, Restaurant, MenuItem, Order, Root controllers
+│   │   ├── model/             # User, Restaurant, MenuItem, Order entities
+│   │   ├── repository/        # Spring Data JPA repositories
+│   │   ├── security/          # JWT Filter, UserDetailsService, SecurityConfig
+│   │   └── service/           # Business logic & transactional operations
+│   └── Dockerfile
+├── crave-frontend/            # React 18 SPA (Vite, Tailwind CSS, Lucide icons)
+│   ├── src/
+│   │   ├── api/               # Axios client connected to live backend
+│   │   ├── components/        # Modals, Navigation, Cart, Management portals
+│   │   └── App.jsx            # Main app shell & Claymorphic theme
+│   ├── .env.production        # Production environment config
+│   └── Dockerfile
+├── docker-compose.yml         # Full local orchestration
+├── render.yaml                # Render Blueprint automated deployment spec
+└── README.md                  # Project documentation & live links
 ```
